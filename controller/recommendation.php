@@ -152,7 +152,7 @@
         $result['saw_phones_10'] = array_slice($saw_phones, 5, 10);
         $result['saw_phones_all'] = array_slice($saw_phones, 0, count($phones));
 
-        var_dump($result['saw_phones_all']);
+        // var_dump($result['saw_phones_all']);
 
         $_SESSION["saw_phones_5"] = $result['saw_phones_5'];
         $_SESSION["saw_phones_10"] = $result['saw_phones_10'];
@@ -245,7 +245,7 @@
         $result['wp_phones_10'] = array_slice($wp_phones, 5, 10);
         $result['wp_phones_all'] = array_slice($wp_phones, 0, count($phones));
 
-        var_dump($result['wp_phones_all']);
+        // var_dump($result['wp_phones_all']);
 
         $_SESSION["wp_phones_5"] = $result['wp_phones_5'];
         $_SESSION["wp_phones_10"] = $result['wp_phones_10'];
@@ -284,13 +284,13 @@
         $result['saw_wp_phones_10'] = array_slice($v_avg_saw_wp, 5, 10);
         $result['saw_wp_phones_all'] = array_slice($v_avg_saw_wp, 0, count($phones));
 
-        var_dump($result['saw_wp_phones_all']);
+        // var_dump($result['saw_wp_phones_all']);
 
         $_SESSION["saw_wp_phones_5"] = $result["saw_wp_phones_5"];
         $_SESSION["saw_wp_phones_10"] = $result["saw_wp_phones_10"];
 
 
-        die;
+        // die;
 
         header("Location: rec_result.php"); exit;
     }
