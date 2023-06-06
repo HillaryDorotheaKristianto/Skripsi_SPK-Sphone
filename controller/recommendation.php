@@ -152,7 +152,7 @@
         $result['saw_phones_10'] = array_slice($saw_phones, 5, 10);
         $result['saw_phones_all'] = array_slice($saw_phones, 0, count($phones));
 
-        // var_dump($result['saw_phones_all']);
+        var_dump($result['saw_phones_all']);
 
         $_SESSION["saw_phones_5"] = $result['saw_phones_5'];
         $_SESSION["saw_phones_10"] = $result['saw_phones_10'];
@@ -188,10 +188,18 @@
             $s[$key]["battery"] = pow($phone["battery_bobot"],$w[4]);
             $s[$key]["front_cam"] = pow($phone["front_camera_bobot"],$w[5]);
             $s[$key]["back_cam"] = pow($phone["back_camera_bobot"],$w[6]);
-            $s[$key]["s"] = $s[$key]["price"] * $s[$key]["ram"] * $s[$key]["memory"] * $s[$key]["processor"] * $s[$key]["battery"] * $s[$key]["front_cam"] * $s[$key]["back_cam"];
+            $s[$key]["s_product"] = $s[$key]["price"] * $s[$key]["ram"] * $s[$key]["memory"] * $s[$key]["processor"] * $s[$key]["battery"] * $s[$key]["front_cam"] * $s[$key]["back_cam"];
 
-            // var_dump($s);
+            // var_dump($s[$key]["s_product"]);
         }
+
+        $s_array = [];
+        for($i=0; $i<count($phones); $i++){
+            array_push($s_array, $s[$i]["s_product"]);
+        }
+
+        $s_total = array_sum($s_array);
+        // var_dump($s_total);
 
         // nilai vektor (v)
         foreach($s as $key => $s_wp){
@@ -200,16 +208,9 @@
             $v_wp[$key]["phone_ram"] = $s_wp["phone_ram"];
             $v_wp[$key]["phone_memory"] = $s_wp["phone_memory"];
             $v_wp[$key]["phone_img"] = $s_wp["phone_img"];
-            $v_wp[$key]["price"] = $s_wp["price"]/$s_wp["s"];
-            $v_wp[$key]["ram"] = $s_wp["ram"]/$s_wp["s"];
-            $v_wp[$key]["memory"] = $s_wp["memory"]/$s_wp["s"];
-            $v_wp[$key]["processor"] = $s_wp["processor"]/$s_wp["s"];
-            $v_wp[$key]["battery"] = $s_wp["battery"]/$s_wp["s"];
-            $v_wp[$key]["front_cam"] = $s_wp["front_cam"]/$s_wp["s"];
-            $v_wp[$key]["back_cam"] = $s_wp["back_cam"]/$s_wp["s"];
-            $v_wp[$key]["v_wp"] = $v_wp[$key]["price"] + $v_wp[$key]["ram"] + $v_wp[$key]["memory"] + $v_wp[$key]["processor"] + $v_wp[$key]["battery"] + $v_wp[$key]["front_cam"] + $v_wp[$key]["back_cam"];
+            $v_wp[$key]["v_wp"] = $s_wp["s_product"]/$s_total;
         
-            // var_dump($v_wp);
+            // var_dump($v_wp[$key]["v_wp"]);
         }
         
         // merging $v datas into array
@@ -244,7 +245,7 @@
         $result['wp_phones_10'] = array_slice($wp_phones, 5, 10);
         $result['wp_phones_all'] = array_slice($wp_phones, 0, count($phones));
 
-        // var_dump($result['wp_phones_all']);
+        var_dump($result['wp_phones_all']);
 
         $_SESSION["wp_phones_5"] = $result['wp_phones_5'];
         $_SESSION["wp_phones_10"] = $result['wp_phones_10'];
@@ -283,13 +284,13 @@
         $result['saw_wp_phones_10'] = array_slice($v_avg_saw_wp, 5, 10);
         $result['saw_wp_phones_all'] = array_slice($v_avg_saw_wp, 0, count($phones));
 
-        // var_dump($result['saw_wp_phones_all']);
+        var_dump($result['saw_wp_phones_all']);
 
         $_SESSION["saw_wp_phones_5"] = $result["saw_wp_phones_5"];
         $_SESSION["saw_wp_phones_10"] = $result["saw_wp_phones_10"];
 
 
-        // die;
+        die;
 
         header("Location: rec_result.php"); exit;
     }
