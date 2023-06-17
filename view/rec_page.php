@@ -9,7 +9,7 @@
         header("Location: ../");
     }
 
-    require '../controller/recommendation.php';
+    require '../controller/recommendation2.php';
 ?>
 
 <!DOCTYPE html>
